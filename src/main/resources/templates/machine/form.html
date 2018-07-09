@@ -15,22 +15,46 @@
 
 		<h3>Cadastro de máquina</h3>
 
-		<form id="machineForm" class="form-group" action="/machineForm"
-			th:action="@{/machineForm}" method="post">
+		<form id="machineForm" class="form-group" action="/admin/machineForm"
+			th:action="@{/admin/machineForm}" method="post">
 			<input th:type="hidden" name="id" th:field="${machine.id}" />
-			<div class="form-group">
-				<label for="title">Nome</label> <input type="text"
-					class="form-control" id="name" th:field="${machine.name}" />
-			</div>
 
+			<!-- Code -->
 			<div class="form-group">
 				<label for="title">Código</label> <input type="text"
 					class="form-control" id="code" th:field="${machine.code}" />
 			</div>
 
-			<button type="submit" class="btn btn-primary">Save</button>
-			<a href="/machine" th:href="@{/machine}" class="btn btn-danger"
+			<!-- Model -->
+			<div class="form-group">
+				<label for="title">Modelo</label> <input type="text"
+					class="form-control" id="model" th:field="${machine.model}" />
+			</div>
+
+			<!-- Cell -->
+			<div class="form-group">
+				<label for="title">Célula</label> <input type="text"
+					class="form-control" id="cell" th:field="${machine.cell}" />
+			</div>
+
+			<!-- Manufacturer -->
+			<div class="form-group">
+				<label for="title">Fabricante</label> <input type="text"
+					class="form-control" id="manufacturer"
+					th:field="${machine.manufacturer}" />
+			</div>
+
+			<!-- Cost Center -->
+			<div class="form-group">
+				<label for="title">Centro de custo</label> <input type="text"
+					class="form-control" id="costCenter"
+					th:field="${machine.costCenter}" />
+			</div>
+
+
+			<a href="/admin/machine" th:href="@{/admin/machine}" class="btn btn-danger"
 				role="button">Cancel</a>
+			<button type="submit" class="btn btn-primary">Salvar</button>
 		</form>
 
 	</div>
@@ -38,17 +62,28 @@
 	<!-- define validation rules and activate validation -->
 	<script>
 		$(document).ready(function() {
+
+			alert('Teste');
 			$("#machineForm").validate({
 				rules : {
-					'name' : {
+					'code' : {
 						required : true,
 						minlength : 5,
 						maxlength : 100
 					},
-					'code' : {
+					'model' : {
 						required : true,
 						minlength : 8,
 						maxlength : 10000
+					},
+					'cell' : {
+						required : true,
+					},
+					'manufacturer' : {
+						required : true,
+					},
+					'costCenter' : {
+						required : true,
 					}
 				},
 				messages : {

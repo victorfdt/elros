@@ -24,7 +24,7 @@ public class MachineController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/machine")
+	@RequestMapping(value = "/admin/machine")
 	public String index(Model model) {
 		model.addAttribute("machineList", machineService.findAll());
 		return "machine/index";
@@ -37,7 +37,7 @@ public class MachineController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(value = { "/machineForm", "/machineForm/{id}" })
+	@GetMapping(value = { "/admin/machineForm", "/admin/machineForm/{id}" })
 	public String machineForm(Model model, @PathVariable(required = false, name = "id") Long id) {
 		if (null != id) {
 			model.addAttribute("machine", machineService.findOne(id));
@@ -53,14 +53,14 @@ public class MachineController {
 	 * @param machine
 	 * @return
 	 */
-	@PostMapping(value = "/machineForm")
+	@PostMapping(value = "/admin/machineForm")
 	public String notesEdit(Model model, Machine machine) {
 		machineService.saveMachine(machine);
 		model.addAttribute("machineList", machineService.findAll());
 		return "machine/index";
 	}
 	
-	@GetMapping(value="/machineDelete/{id}")
+	@GetMapping(value="/admin/machineDelete/{id}")
     public String machineDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
 		machineService.deleteMachine(id);
 		model.addAttribute("machineList", machineService.findAll());

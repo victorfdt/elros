@@ -15,37 +15,43 @@
 
 		<h3>Lista de máquinas cadastradas</h3>
 
+		<!-- 		
+		this.code = code;
+		this.model = model;
+		this.cell = cell;
+		this.manufacturer = manufacturer;
+		this.costCenter = costCenter;
+		 -->
+
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Nome</th>
 					<th>Código</th>
+					<th>Modelo</th>
+					<th>Célula</th>
+					<th>Fabricante</th>
+					<th>Centro de custo</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="machine : ${machineList}">
-					<td th:text="${machine.name}">Nome</td>
 					<td th:text="${machine.code}">Código</td>
-					<td><a href="/notesEdit/1"
-						th:href="@{/machineForm/__${machine.id}__}">Edit</a> <a
-						href="/machineDelete/1"
-						th:href="@{/machineDelete/__${machine.id}__}">Delete</a></td>
+					<td th:text="${machine.model}">Modelo</td>
+					<td th:text="${machine.cell}">Célula</td>
+					<td th:text="${machine.manufacturer}">Fabricante</td>
+					<td th:text="${machine.costCenter}">Centro de custo</td>
+					<td><a th:href="@{/admin/machineForm/__${machine.id}__}">Edit</a> <a
+						th:href="@{/admin/machineDelete/__${machine.id}__}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>
 
 		<div class="row">
-			<div class="col-md-6 text-left">
-				<a class="btn btn-danger" th:href="@{/index}" role="button">Voltar</a>
+			<div class="col-md-12">
+				<a th:href="@{/}" class="btn btn-primary" role="button">Voltar</a> <a
+					th:href="@{/admin/machineForm}" class="btn btn-danger" role="button">Criar</a>
 			</div>
-			
-			<div class="col-md-6 text-right">
-				<a class="btn btn-primary" th:href="@{/machineForm}" role="button">Cadastrar</a>
-			</div>
-
 		</div>
-
-
 	</div>
 
 </body>
