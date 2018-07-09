@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/workspace" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Layout</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+
+		<h1>Máquinas</h1>
+
+		<h3>Cadastro de máquina</h3>
+
+		<form id="machineForm" class="form-group" action="/machineForm"
+			th:action="@{/machineForm}" method="post">
+			<input th:type="hidden" name="id" th:field="${machine.id}" />
+			<div class="form-group">
+				<label for="title">Nome</label> <input type="text"
+					class="form-control" id="name" th:field="${machine.name}" />
+			</div>
+
+			<div class="form-group">
+				<label for="title">Código</label> <input type="text"
+					class="form-control" id="code" th:field="${machine.code}" />
+			</div>
+
+			<button type="submit" class="btn btn-primary">Save</button>
+			<a href="/machine" th:href="@{/machine}" class="btn btn-danger"
+				role="button">Cancel</a>
+		</form>
+
+	</div>
+
+	<!-- define validation rules and activate validation -->
+	<script>
+		$(document).ready(function() {
+			$("#machineForm").validate({
+				rules : {
+					'name' : {
+						required : true,
+						minlength : 5,
+						maxlength : 100
+					},
+					'code' : {
+						required : true,
+						minlength : 8,
+						maxlength : 10000
+					}
+				},
+				messages : {
+					title : {
+						required : "Por favor, preencha este campo."
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>
